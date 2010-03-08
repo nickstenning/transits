@@ -2,7 +2,19 @@
 <html>
   <head>
     <title>Transits</title>
+    <!--
 
+    Notes: fullscreen Firefox and point a light meter at the screen, plotting
+    intensity against time to see how astronomers detect the passage of planets
+    in front of distant stars.
+
+    Using LogIT probe: start 30cm away, as photodiode has quite a narrow field
+    of view (~20deg), and if it is too close, the the planet won't be detected
+    until it is quite some way across the star.
+
+    Can even detect down to p = 0.1*s at a distance of ~60-70cm.
+
+    -->
     <style>
       body {
         margin: 0;
@@ -15,7 +27,6 @@
         background-color: transparent;
         position: absolute;
         top: 50%;
-        left: 0px;
         width: 100%;
         margin-top: -325px;
       }
@@ -24,49 +35,17 @@
         width: 650px;
         height: 650px;
         margin: 0px auto;
-        background-color: black;
       }
     </style>
 
     <script src="/static/js/jquery.js"></script>
     <script src="processing.js"></script>
-    <script src="processing.init.js"></script>
   </head>
   <body>
     <div id="horizon">
-      <script type="application/processing">
-      float s = 650.0;   // star / canvas size
-      float p = 0.3 * s; // planet size
-
-      float x = 0.0;
-      
-      float speed = 1.0;
-      int pause = 1;
-
-      void setup() {
-        size(s, s);
-        smooth();
-
-        frameRate(30);
-        background(0);
-      }
-
-      void draw() {
-        fill(255);
-        ellipse(s/2, s/2, s, s);
-
-        x = x + speed;
-
-        if (x > s + (1 + pause) * p) { // Past the RH edge of the star.
-          x = 0;
-        }
-
-        translate(x, 0);
-        fill(0);
-        ellipse(-p/2, s/2, p, p);
-      }
-      </script>
-      <canvas id="transits"></canvas>
+      <!-- The presence of the data-src attribute causes Processing to autoload
+           the code for this canvas. -->
+      <canvas id="transits" data-src="transits.pde"></canvas>
     </div>
   </body>
 </html>
