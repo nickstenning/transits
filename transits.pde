@@ -31,13 +31,19 @@ void draw() {
 
 void keyPressed() {
   switch(int(key)) {
+    case 49: // earth
+      p = 0.0091 * s;
+      break;
+    case 50: // jupiter
+      p = 0.1027 * s;
+      break;      
     case 48: // 0
       p = 0.1 * s;
       break;
-    case 187: // =
+    case 61: // =
       p *= 1.1;
       break;
-    case 189: // -
+    case 45: // -
       p *= 1/1.1;
       break;
     case 102: // f
